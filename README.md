@@ -24,19 +24,59 @@ The synchronous nature of the flip-flops ensures that the shifting of data occur
 Each D flip-flop in the circuit has a Data (D) input, a Clock (CLK) input, and an output (Q). The D input represents the data to be loaded into the flip-flop, while the CLK input is connected to the common clock signal. The output (Q) of each flip-flop is connected to the D input of the next flip-flop, forming a cascade.
 
 **Procedure**
+1.Define Module: Define a Verilog module for the T flip-flop with inputs (T, CLK) and outputs (Q, Q_bar).
 
-/* write all the steps invloved */
+2.Declare Inputs and Outputs: Declare input and output ports for the module.
+
+3.Implement Flip-Flop Logic: Write Verilog code to implement the T flip-flop logic based on its functional table. Use a synchronous always @(posedge CLK) block to trigger the flip-flop on the positive edge of the clock signal.
+
+4.Simulate Using Testbench: Write a Verilog testbench to simulate the behavior of the T flip-flop under different input conditions.
+
+5.Apply Input Stimuli: In the testbench, apply various combinations of input stimuli (T, CLK) to cover all possible input states.
+
+6.Verify Output Behavior: Verify that the output behavior of the T flip-flop matches the expected behavior defined by its functional table.
+
+7.Check for Race Conditions: Ensure that there are no race conditions or undefined states in the design by analyzing the timing and sequence of input changes.
 
 **PROGRAM**
 
 /* Program for flipflops and verify its truth table in quartus using Verilog programming.
 
-Developed by: RegisterNumber:
+Developed by: AHALYA S
+RegisterNumber: 212223230006
 
 */
+```
+module ex09( input clk, rst_n, input t, 
+output reg q, 
+output q_bar 
+); 
+always@(posedge clk) 
+begin // for synchronous reset 
+ //WRITE THE CONDITION OF TOGGLE FLIPFLOP HERE WITH RESET AND 
+ //IMPLEMENT THE T LOGIC BY CONDITIONAL OPERATOR 
+if(!rst_n) 
+q<=0; 
+else 
+begin 
+q<=(t?~q:q); 
+end 
+end 
+assign q_bar = ~q; 
+endmodule
+```
 
 **RTL LOGIC FOR SISO Shift Register**
 
+![image](https://github.com/ahalyaselvakumar/SERIAL-IN-SERIAL-OUT-SHIFTREGISTER/assets/144870759/4c5b38ef-1f5e-41c7-8914-2a46995a9e3f)
+
+
 **TIMING DIGRAMS FOR SISO Shift Register**
 
+![image](https://github.com/ahalyaselvakumar/SERIAL-IN-SERIAL-OUT-SHIFTREGISTER/assets/144870759/4ed93a13-97e0-4672-8b13-bd18d377a300)
+
+
+
 **RESULTS**
+Hence, T flipflop using verilog and validating their functionality using their functional tables is implemented.
+
